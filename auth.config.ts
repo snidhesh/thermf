@@ -10,7 +10,7 @@ export default {
       const pathname = nextUrl.pathname;
 
       // Public routes
-      const publicRoutes = ["/", "/register", "/login", "/news"];
+      const publicRoutes = ["/", "/v2", "/register", "/login", "/news"];
       const isPublicRoute = publicRoutes.some(
         (route) =>
           pathname === route ||
