@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ScrollReveal } from "./scroll-reveal";
+import { Clock, MessageSquare, ShieldCheck } from "lucide-react";
 
 const specialties = [
   "Functional Medicine",
@@ -116,14 +117,38 @@ export function RegisterSection() {
               &ldquo;Not only a course, a biological, clinical, and professional
               transformation that redefines your practice and your life.&rdquo;
             </div>
-            <div className="text-[11px] text-[var(--wt-slate)] leading-[1.65] p-[13px] px-[15px] bg-[rgba(184,137,42,0.04)] border border-[rgba(184,137,42,0.12)] rounded-[2px]">
-              <strong className="block text-[12px] text-[rgba(255,255,255,0.48)] mb-[5px]">
+
+            {/* What happens next - with icons */}
+            <div className="p-[15px] bg-[rgba(184,137,42,0.04)] border border-[rgba(184,137,42,0.12)] rounded-[2px]">
+              <strong className="block text-[12px] text-[rgba(255,255,255,0.48)] mb-3">
                 What happens next
               </strong>
-              Your details are reviewed within 7 working days. If your profile
-              meets initial criteria, a member of the RMF board will reach out to
-              begin a conversation. Membership and immersion details are shared
-              at that stage. Nothing is disclosed before that point.
+              <div className="flex flex-col gap-2.5">
+                <div className="flex gap-3 items-start">
+                  <div className="w-6 h-6 rounded-full border border-[rgba(184,137,42,0.22)] flex items-center justify-center shrink-0">
+                    <Clock className="w-3 h-3 text-[var(--wt-gold)]" />
+                  </div>
+                  <span className="text-[11px] text-[var(--wt-slate)] leading-[1.65] pt-0.5">
+                    Your details are reviewed within 7 working days
+                  </span>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <div className="w-6 h-6 rounded-full border border-[rgba(184,137,42,0.22)] flex items-center justify-center shrink-0">
+                    <MessageSquare className="w-3 h-3 text-[var(--wt-gold)]" />
+                  </div>
+                  <span className="text-[11px] text-[var(--wt-slate)] leading-[1.65] pt-0.5">
+                    A board member will reach out if there is alignment
+                  </span>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <div className="w-6 h-6 rounded-full border border-[rgba(184,137,42,0.22)] flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-3 h-3 text-[var(--wt-gold)]" />
+                  </div>
+                  <span className="text-[11px] text-[var(--wt-slate)] leading-[1.65] pt-0.5">
+                    Membership and immersion details shared at that stage
+                  </span>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
 

@@ -1,4 +1,15 @@
 import { ScrollReveal } from "./scroll-reveal";
+import {
+  GraduationCap,
+  Globe,
+  FlaskConical,
+  BookOpen,
+  Video,
+  MessageCircle,
+  ShieldCheck,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 
 const tiers = [
   {
@@ -9,13 +20,13 @@ const tiers = [
     featured: true,
     desc: "Fellows have completed the full Dubai immersion with Dr Marina Cordeiro and stand as living proof of the science they prescribe. The RMF Fellow badge is earned through transformation, not a course. Renewed each year through continued commitment.",
     features: [
-      "Full immersion with Dr Marina Cordeiro in Dubai",
-      "Clinical visits, networking, consultative sessions with medical exams and structured study",
-      "Lived experience of the protocols they will prescribe",
-      "6 months post-visit clinic operational support",
-      "Personalised market positioning strategy by geography and specialty",
-      "Access to the global RMF Fellows network and board",
-      "Annual renewal maintains public badge rights",
+      { icon: <GraduationCap className="w-3.5 h-3.5" />, text: "Full immersion with Dr Marina Cordeiro in Dubai" },
+      { icon: <FlaskConical className="w-3.5 h-3.5" />, text: "Clinical visits, networking, consultative sessions with medical exams and structured study" },
+      { icon: <ShieldCheck className="w-3.5 h-3.5" />, text: "Lived experience of the protocols they will prescribe" },
+      { icon: <TrendingUp className="w-3.5 h-3.5" />, text: "6 months post-visit clinic operational support" },
+      { icon: <Globe className="w-3.5 h-3.5" />, text: "Personalised market positioning strategy by geography and specialty" },
+      { icon: <Users className="w-3.5 h-3.5" />, text: "Access to the global RMF Fellows network and board" },
+      { icon: <ShieldCheck className="w-3.5 h-3.5" />, text: "Annual renewal maintains public badge rights" },
     ],
     badge: null,
   },
@@ -27,15 +38,15 @@ const tiers = [
     featured: false,
     desc: "A professional home for physicians whose practice already reflects the regenerative medicine standard. Admitted exclusively by invitation from a Fellow or board member. Access to the global diagnostic and supplement network, the clinical content library, and direct Fellow connections.",
     features: [
-      "Global access to RMF-approved diagnostic panels",
-      "Curated supplement access worldwide",
-      "Full clinical protocol and content library",
-      "Supplement guide updated quarterly by the scientific board",
-      "Full access to the RMF Online Technical Hub",
-      "Live webinars, case reviews, and board member sessions",
-      "Private network with direct Fellow and board connections",
-      "5 online consultative sessions with a board member of their choice",
-      "Priority consideration for the immersion programme",
+      { icon: <FlaskConical className="w-3.5 h-3.5" />, text: "Global access to RMF-approved diagnostic panels" },
+      { icon: <Globe className="w-3.5 h-3.5" />, text: "Curated supplement access worldwide" },
+      { icon: <BookOpen className="w-3.5 h-3.5" />, text: "Full clinical protocol and content library" },
+      { icon: <BookOpen className="w-3.5 h-3.5" />, text: "Supplement guide updated quarterly by the scientific board" },
+      { icon: <Video className="w-3.5 h-3.5" />, text: "Full access to the RMF Online Technical Hub" },
+      { icon: <Video className="w-3.5 h-3.5" />, text: "Live webinars, case reviews, and board member sessions" },
+      { icon: <Users className="w-3.5 h-3.5" />, text: "Private network with direct Fellow and board connections" },
+      { icon: <MessageCircle className="w-3.5 h-3.5" />, text: "5 online consultative sessions with a board member of their choice" },
+      { icon: <GraduationCap className="w-3.5 h-3.5" />, text: "Priority consideration for the immersion programme" },
     ],
     badge: { text: "Member directory only · No public badge", type: "res" as const },
   },
@@ -47,12 +58,12 @@ const tiers = [
     featured: false,
     desc: "A structured entry into the RMF for emerging-market and early-career physicians building towards full eligibility. Access to clinical content, the supplement guide, and the broader community, with a direct line to scientific leadership through consultative sessions.",
     features: [
-      "Selected RMF clinical content and research updates",
-      "RMF Supplement Guide, standard version",
-      "Associate community forum and peer network access",
-      "Discounted access to RMF congresses and events",
-      "2 online consultative sessions with a board member of their choice",
-      "Clear pathway to Member via invitation from a Fellow or board member",
+      { icon: <BookOpen className="w-3.5 h-3.5" />, text: "Selected RMF clinical content and research updates" },
+      { icon: <BookOpen className="w-3.5 h-3.5" />, text: "RMF Supplement Guide, standard version" },
+      { icon: <Users className="w-3.5 h-3.5" />, text: "Associate community forum and peer network access" },
+      { icon: <GraduationCap className="w-3.5 h-3.5" />, text: "Discounted access to RMF congresses and events" },
+      { icon: <MessageCircle className="w-3.5 h-3.5" />, text: "2 online consultative sessions with a board member of their choice" },
+      { icon: <TrendingUp className="w-3.5 h-3.5" />, text: "Clear pathway to Member via invitation from a Fellow or board member" },
     ],
     badge: { text: "No badge rights at this level", type: "none" as const },
   },
@@ -121,14 +132,16 @@ export function MembershipSection() {
                 <p className="text-[13px] text-[rgba(255,255,255,0.42)] leading-[1.7] mb-[22px] flex-1">
                   {tier.desc}
                 </p>
-                <ul className="flex flex-col gap-2 mb-6">
+                <ul className="flex flex-col gap-2.5 mb-6">
                   {tier.features.map((f) => (
                     <li
-                      key={f}
+                      key={f.text}
                       className="text-[12px] text-[rgba(255,255,255,0.46)] flex items-start gap-[9px] leading-[1.5]"
                     >
-                      <span className="w-[3px] h-[3px] rounded-full bg-[var(--wt-gold)] shrink-0 mt-[6px]" />
-                      {f}
+                      <span className="text-[var(--wt-gold)] shrink-0 mt-[1px]">
+                        {f.icon}
+                      </span>
+                      {f.text}
                     </li>
                   ))}
                 </ul>

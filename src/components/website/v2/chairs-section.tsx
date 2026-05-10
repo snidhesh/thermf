@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "@/components/website/scroll-reveal";
 
 const chairs = [
@@ -155,9 +156,20 @@ export function ChairsSectionV2() {
         <h2 className="font-heading text-[32px] md:text-[38px] font-light text-[var(--wt2-text)] text-center mb-3">
           Areas of Clinical Focus
         </h2>
-        <p className="text-[15px] text-[var(--wt2-text-muted)] text-center max-w-[600px] mx-auto mb-12">
+        <p className="text-[15px] text-[var(--wt2-text-muted)] text-center max-w-[600px] mx-auto mb-8">
           Our clinical framework is structured around 12 interconnected scientific chairs. Each is led by an institutional expert, not a guest speaker, but a committed clinical leader.
         </p>
+
+        {/* Lab image */}
+        <div className="relative rounded-lg overflow-hidden aspect-[21/5] mb-10">
+          <Image
+            src="/images/lab-research.jpg"
+            alt="Medical research laboratory"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 to-white/90" />
+        </div>
 
         <ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

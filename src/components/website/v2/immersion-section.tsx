@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "@/components/website/scroll-reveal";
 import {
   BookOpen,
@@ -90,12 +91,27 @@ export function ImmersionSectionV2() {
       className="bg-[var(--wt2-bg-alt)] py-14 md:py-20 px-5 md:px-12 border-t border-[var(--wt2-border)]"
     >
       <div className="max-w-[1100px] mx-auto">
-        <p className="text-[11px] tracking-[3px] uppercase text-[var(--wt2-primary)] font-semibold mb-3 text-center">
-          The Immersion Programme
-        </p>
-        <h2 className="font-heading text-[32px] md:text-[38px] font-light text-[var(--wt2-text)] text-center mb-3">
-          The Dubai Immersion
-        </h2>
+        {/* Dubai banner image */}
+        <div className="relative rounded-lg overflow-hidden aspect-[21/6] mb-10">
+          <Image
+            src="/images/immersion-dubai.jpg"
+            alt="Dubai skyline"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(27,58,92,0.8)] via-[rgba(27,58,92,0.5)] to-[rgba(27,58,92,0.8)]" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <p className="text-[11px] tracking-[3px] uppercase text-white/60 font-semibold mb-2">
+                The Immersion Programme
+              </p>
+              <h2 className="font-heading text-[32px] md:text-[42px] font-light text-white">
+                The Dubai Immersion
+              </h2>
+            </div>
+          </div>
+        </div>
+
         <p className="text-[15px] text-[var(--wt2-text-muted)] text-center max-w-[600px] mx-auto mb-12">
           A three-phase programme that transforms how you practise regenerative medicine. Not a course — a clinical and professional transformation.
         </p>

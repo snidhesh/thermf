@@ -7,6 +7,6 @@ export default auth;
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|logo\\.png|logo\\.svg|og-image.jpg|fonts/).*)",
+    "/((?!_next/static|_next/image|favicon.ico|logo\\.png|logo\\.svg|og-image.jpg|images/|fonts/).*)",
   ],
 };

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "@/components/website/scroll-reveal";
 import { BookOpen, Users, Stethoscope, Award } from "lucide-react";
 
@@ -93,30 +94,27 @@ export function AboutMembershipV2() {
           </ScrollReveal>
         </div>
 
-        {/* Decorative illustration — abstract network */}
-        <div className="mt-14 relative overflow-hidden rounded-lg bg-gradient-to-r from-[#F0F4F8] to-[#E8EDF3] border border-[var(--wt2-border)] p-8 md:p-12">
-          {/* Decorative dots pattern */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(27,58,92,0.05)_1px,transparent_0)] bg-[size:24px_24px] pointer-events-none" />
-          {/* Abstract connection lines */}
-          <svg className="absolute top-0 right-0 w-[300px] h-[200px] text-[var(--wt2-primary)] opacity-[0.04]" viewBox="0 0 300 200" fill="none">
-            <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="1" />
-            <circle cx="150" cy="100" r="40" stroke="currentColor" strokeWidth="1" />
-            <circle cx="250" cy="60" r="25" stroke="currentColor" strokeWidth="1" />
-            <circle cx="200" cy="160" r="35" stroke="currentColor" strokeWidth="1" />
-            <line x1="80" y1="50" x2="110" y2="100" stroke="currentColor" strokeWidth="1" />
-            <line x1="190" y1="100" x2="225" y2="60" stroke="currentColor" strokeWidth="1" />
-            <line x1="150" y1="140" x2="200" y2="125" stroke="currentColor" strokeWidth="1" />
-          </svg>
-          <div className="relative z-10 text-center max-w-[500px] mx-auto">
-            <p className="text-[11px] tracking-[3px] uppercase text-[var(--wt2-primary)] font-semibold mb-2">
-              Global Reach
-            </p>
-            <p className="font-heading text-[24px] md:text-[28px] font-light text-[var(--wt2-text)]">
-              Connecting physicians across <span className="text-[var(--wt2-primary)]">24 countries</span>
-            </p>
-            <p className="text-[14px] text-[var(--wt2-text-muted)] mt-3">
-              From the UAE to Brazil, the UK to Australia — a network built on shared commitment to clinical excellence.
-            </p>
+        {/* Illustrative image banner */}
+        <div className="mt-14 relative overflow-hidden rounded-lg aspect-[21/7]">
+          <Image
+            src="/images/medical-team.jpg"
+            alt="Medical professionals collaborating"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(27,58,92,0.85)] to-[rgba(27,58,92,0.7)]" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative z-10 text-center max-w-[500px] mx-auto px-5">
+              <p className="text-[11px] tracking-[3px] uppercase text-white/60 font-semibold mb-2">
+                Global Reach
+              </p>
+              <p className="font-heading text-[24px] md:text-[28px] font-light text-white">
+                Connecting physicians across <span className="text-[var(--wt2-gold)]">24 countries</span>
+              </p>
+              <p className="text-[14px] text-white/60 mt-3">
+                From the UAE to Brazil, the UK to Australia — a network built on shared commitment to clinical excellence.
+              </p>
+            </div>
           </div>
         </div>
       </div>

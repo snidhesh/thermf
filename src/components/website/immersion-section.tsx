@@ -1,4 +1,20 @@
+import Image from "next/image";
 import { ScrollReveal } from "./scroll-reveal";
+import {
+  BookOpen,
+  Microscope,
+  Activity,
+  FileText,
+  Stethoscope,
+  Users,
+  UserCheck,
+  TrendingUp,
+  Globe,
+  RefreshCw,
+  MapPin,
+  ShieldCheck,
+  Award,
+} from "lucide-react";
 
 const phases = [
   {
@@ -8,10 +24,10 @@ const phases = [
     days: "Remote · 4 weeks",
     desc: "Foundational scientific modules, diagnostic panel review, and baseline health assessments completed remotely before arrival.",
     items: [
-      "Online modules in peptide science, stem cell biology, and longevity protocols",
-      "Personal diagnostic panel review with scientific board",
-      "Baseline health metrics and biomarker assessment",
-      "Pre-immersion reading and case study preparation",
+      { icon: <BookOpen className="w-3.5 h-3.5" />, text: "Online modules in peptide science, stem cell biology, and longevity protocols" },
+      { icon: <Microscope className="w-3.5 h-3.5" />, text: "Personal diagnostic panel review with scientific board" },
+      { icon: <Activity className="w-3.5 h-3.5" />, text: "Baseline health metrics and biomarker assessment" },
+      { icon: <FileText className="w-3.5 h-3.5" />, text: "Pre-immersion reading and case study preparation" },
     ],
     goal: "Goal → Scientific foundation",
     active: false,
@@ -23,11 +39,11 @@ const phases = [
     days: "On-site · 5 days",
     desc: "A transformative clinical immersion in Dubai with Dr Marina Cordeiro. Live protocols, clinical visits, and direct experience of the medicine you will prescribe.",
     items: [
-      "Live clinical protocols with Dr Marina Cordeiro",
-      "Clinical site visits and operational walkthroughs",
-      "Networking sessions with fellows and board members",
-      "Personalised medical exams and protocol exposure",
-      "Structured study and case-based learning",
+      { icon: <Stethoscope className="w-3.5 h-3.5" />, text: "Live clinical protocols with Dr Marina Cordeiro" },
+      { icon: <MapPin className="w-3.5 h-3.5" />, text: "Clinical site visits and operational walkthroughs" },
+      { icon: <Users className="w-3.5 h-3.5" />, text: "Networking sessions with fellows and board members" },
+      { icon: <Activity className="w-3.5 h-3.5" />, text: "Personalised medical exams and protocol exposure" },
+      { icon: <BookOpen className="w-3.5 h-3.5" />, text: "Structured study and case-based learning" },
     ],
     goal: "Goal → Lived transformation",
     active: true,
@@ -39,11 +55,11 @@ const phases = [
     days: "Remote · 6 months",
     desc: "Post-immersion support, clinic operational guidance, market positioning, and ongoing access to the fellow network.",
     items: [
-      "6-month clinic operational support programme",
-      "Market positioning strategy by geography and specialty",
-      "Ongoing access to fellows network and board",
-      "Quarterly supplement guide updates",
-      "Annual renewal pathway",
+      { icon: <TrendingUp className="w-3.5 h-3.5" />, text: "6-month clinic operational support programme" },
+      { icon: <Globe className="w-3.5 h-3.5" />, text: "Market positioning strategy by geography and specialty" },
+      { icon: <Users className="w-3.5 h-3.5" />, text: "Ongoing access to fellows network and board" },
+      { icon: <RefreshCw className="w-3.5 h-3.5" />, text: "Quarterly supplement guide updates" },
+      { icon: <UserCheck className="w-3.5 h-3.5" />, text: "Annual renewal pathway" },
     ],
     goal: "Goal → Clinical integration",
     active: false,
@@ -52,14 +68,17 @@ const phases = [
 
 const gateItems = [
   {
+    icon: <ShieldCheck className="w-4 h-4" />,
     title: "Fellowship Certification",
     desc: "Earned through completion of all three phases. The RMF Fellow badge is a verified marker of frontline commitment.",
   },
   {
+    icon: <RefreshCw className="w-4 h-4" />,
     title: "Annual Renewal",
     desc: "Continued commitment through annual renewal maintains public badge rights and network access.",
   },
   {
+    icon: <Award className="w-4 h-4" />,
     title: "Global Recognition",
     desc: "Listed in the RMF Fellow directory. Recognised across 24 countries as a practitioner at the highest level.",
   },
@@ -72,13 +91,26 @@ export function ImmersionSection() {
       className="py-[60px] md:py-[92px] px-5 md:px-[52px] bg-[var(--wt-bg)] border-t border-[var(--wt-border)]"
     >
       <div className="max-w-[1200px] mx-auto">
+        {/* Dubai skyline banner */}
+        <div className="relative rounded overflow-hidden mb-12 aspect-[21/6]">
+          <Image
+            src="/images/immersion-dubai.jpg"
+            alt="Dubai skyline"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--wt-bg)] via-[rgba(4,16,30,0.6)] to-[var(--wt-bg)]" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className="wt-eyebrow">The Immersion Programme</div>
+              <h2 className="font-heading text-[36px] md:text-[48px] font-light text-white leading-[1]">
+                The Dubai <em className="text-[var(--wt-gold)] italic">Immersion</em>
+              </h2>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center max-w-[660px] mx-auto mb-[52px]">
-          <div className="wt-eyebrow">The Immersion Programme</div>
-          <h2 className="wt-heading text-center">
-            The Dubai
-            <br />
-            <em>Immersion</em>
-          </h2>
           <p className="wt-lead text-center mx-auto">
             A three-phase programme that transforms how you practise
             regenerative medicine. Not a course — a clinical and professional
@@ -121,20 +153,22 @@ export function ImmersionSection() {
                 <p className="text-[12px] text-[rgba(255,255,255,0.38)] leading-[1.7] mb-3.5">
                   {phase.desc}
                 </p>
-                <ul className="flex flex-col gap-1.5">
+                <ul className="flex flex-col gap-2">
                   {phase.items.map((item) => (
                     <li
-                      key={item}
-                      className="text-[12px] text-[rgba(255,255,255,0.44)] flex gap-2 items-start leading-[1.45]"
+                      key={item.text}
+                      className="text-[12px] text-[rgba(255,255,255,0.44)] flex gap-2.5 items-start leading-[1.45]"
                     >
                       <span
-                        className={`w-[3px] h-[3px] rounded-full shrink-0 mt-[5px] ${
+                        className={`shrink-0 mt-[1px] ${
                           phase.active
-                            ? "bg-[var(--wt-mint)]"
-                            : "bg-[rgba(92,122,150,0.5)]"
+                            ? "text-[var(--wt-mint)]"
+                            : "text-[rgba(184,137,42,0.5)]"
                         }`}
-                      />
-                      {item}
+                      >
+                        {item.icon}
+                      </span>
+                      {item.text}
                     </li>
                   ))}
                 </ul>
@@ -167,18 +201,8 @@ export function ImmersionSection() {
                   key={item.title}
                   className="flex gap-3.5 items-start p-3.5 px-4 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.05)] rounded-[3px]"
                 >
-                  <div className="w-8 h-8 rounded-full border border-[rgba(184,137,42,0.22)] flex items-center justify-center shrink-0">
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      className="text-[var(--wt-gold)]"
-                    >
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
+                  <div className="w-8 h-8 rounded-full border border-[rgba(184,137,42,0.22)] flex items-center justify-center shrink-0 text-[var(--wt-gold)]">
+                    {item.icon}
                   </div>
                   <div>
                     <strong className="block text-[12px] font-medium text-white mb-0.5">

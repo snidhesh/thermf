@@ -6,6 +6,14 @@ export function HeroV2() {
     <>
       {/* Hero Banner */}
       <section className="relative w-full min-h-[520px] md:min-h-[600px] overflow-hidden flex items-center pt-[83px] bg-gradient-to-br from-[#0F2A45] via-[#1B3A5C] to-[#0A1628]">
+        {/* Background image */}
+        <Image
+          src="/images/hero-medical.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-[0.08]"
+          priority
+        />
         {/* Decorative dot pattern overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.03)_1px,transparent_0)] bg-[size:32px_32px] pointer-events-none" />
 
