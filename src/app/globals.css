@@ -293,3 +293,121 @@
     transform: translateY(0);
   }
 }
+
+/* ------------------------------------------------------------------ */
+/*  Website V2 light professional theme — scoped to .website-theme-v2 */
+/* ------------------------------------------------------------------ */
+
+.website-theme-v2 {
+  --wt2-bg: #FFFFFF;
+  --wt2-bg-alt: #F7F8FA;
+  --wt2-primary: #1B3A5C;
+  --wt2-primary-light: #2A5080;
+  --wt2-gold: #B8892A;
+  --wt2-gold-light: #D4A84B;
+  --wt2-text: #0A1628;
+  --wt2-text-body: #4A5568;
+  --wt2-text-muted: #718096;
+  --wt2-border: #E2E8F0;
+  --wt2-border-light: #EDF2F7;
+
+  /* Override shadcn CSS variables for light palette */
+  --background: #FFFFFF;
+  --foreground: #0A1628;
+  --card: #FFFFFF;
+  --card-foreground: #0A1628;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A1628;
+  --primary: #1B3A5C;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F7F8FA;
+  --secondary-foreground: #0A1628;
+  --muted: #F7F8FA;
+  --muted-foreground: #718096;
+  --accent: #B8892A;
+  --accent-foreground: #FFFFFF;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #1B3A5C;
+}
+
+/* V2 utility classes */
+.website-theme-v2 .wt2-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--wt2-primary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.website-theme-v2 .wt2-heading {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--wt2-text);
+}
+
+.website-theme-v2 .wt2-heading em {
+  color: var(--wt2-primary);
+  font-style: italic;
+}
+
+.website-theme-v2 .wt2-rule {
+  width: 40px;
+  height: 2px;
+  background: var(--wt2-gold);
+  margin: 18px 0;
+}
+
+.website-theme-v2 .wt2-lead {
+  font-size: 16px;
+  color: var(--wt2-text-body);
+  line-height: 1.75;
+  max-width: 600px;
+  font-weight: 400;
+}
+
+/* V2 form field styles */
+.website-theme-v2 .wt2-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--wt2-text);
+  margin-bottom: 6px;
+}
+
+.website-theme-v2 .wt2-field input,
+.website-theme-v2 .wt2-field select {
+  width: 100%;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  border: 1px solid var(--wt2-border);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--wt2-text);
+  font-family: var(--font-sans);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.website-theme-v2 .wt2-field input:focus,
+.website-theme-v2 .wt2-field select:focus {
+  outline: none;
+  border-color: var(--wt2-primary);
+  box-shadow: 0 0 0 3px rgba(27, 58, 92, 0.1);
+}
+
+.website-theme-v2 .wt2-field input::placeholder {
+  color: var(--wt2-text-muted);
+}
+
+.website-theme-v2 .wt2-field select option {
+  background: #FFFFFF;
+}
+
+/* Scroll-margin for anchor targets under fixed navbar */
+.website-theme-v2 section[id] {
+  scroll-margin-top: 80px;
+}
