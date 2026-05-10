@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, use } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { Clock, CheckCircle, XCircle, Search } from "lucide-react";
 
@@ -36,8 +35,8 @@ export default function ApplicationStatusPage({
         const data = await res.json();
         setStatus(data.status);
         setSubmittedAt(data.submittedAt);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
         setLoading(false);
       }
@@ -48,51 +47,53 @@ export default function ApplicationStatusPage({
   const info = status ? STATUS_INFO[status as keyof typeof STATUS_INFO] : null;
 
   return (
-    <div className="container mx-auto px-4 py-20">
-      <Card className="max-w-lg mx-auto">
-        <CardContent className="p-8 text-center">
-          <h1 className="font-heading text-2xl font-bold text-rmf-navy mb-6">
-            Application Status
-          </h1>
+    <div className="min-h-screen flex items-center justify-center px-4 pt-[72px]">
+      <div className="bg-[var(--wt-bg3)] border border-[var(--wt-border)] rounded max-w-lg w-full p-8 text-center">
+        <h1 className="font-heading text-2xl font-light text-white mb-6">
+          Application Status
+        </h1>
 
-          {loading && (
-            <div className="py-8">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-rmf-gold border-t-transparent mx-auto" />
-              <p className="text-muted-foreground mt-4">Loading...</p>
+        {loading && (
+          <div className="py-8">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-[var(--wt-gold)] border-t-transparent mx-auto" />
+            <p className="text-[var(--wt-slate)] mt-4">Loading...</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="py-8">
+            <XCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
+            <p className="text-red-400">{error}</p>
+          </div>
+        )}
+
+        {status && info && (
+          <div className="py-4">
+            <info.icon
+              className={`h-16 w-16 mx-auto mb-4 ${
+                status === "approved"
+                  ? "text-green-500"
+                  : status === "declined"
+                  ? "text-red-500"
+                  : "text-[var(--wt-gold)]"
+              }`}
+            />
+            <div className="mb-4">
+              <StatusBadge status={status} />
             </div>
-          )}
+            <p className="text-[var(--wt-slate)] mb-4">{info.text}</p>
+            {submittedAt && (
+              <p className="text-xs text-[var(--wt-slate)]">
+                Submitted: {submittedAt}
+              </p>
+            )}
+          </div>
+        )}
 
-          {error && (
-            <div className="py-8">
-              <XCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-              <p className="text-red-600">{error}</p>
-            </div>
-          )}
-
-          {status && info && (
-            <div className="py-4">
-              <info.icon className={`h-16 w-16 mx-auto mb-4 ${
-                status === "approved" ? "text-green-500" :
-                status === "declined" ? "text-red-500" :
-                "text-rmf-gold"
-              }`} />
-              <div className="mb-4">
-                <StatusBadge status={status} />
-              </div>
-              <p className="text-muted-foreground mb-4">{info.text}</p>
-              {submittedAt && (
-                <p className="text-xs text-muted-foreground">
-                  Submitted: {submittedAt}
-                </p>
-              )}
-            </div>
-          )}
-
-          <p className="text-xs text-muted-foreground mt-6">
-            Reference: {ref}
-          </p>
-        </CardContent>
-      </Card>
+        <p className="text-xs text-[var(--wt-slate)] mt-6">
+          Reference: <span className="font-mono">{ref}</span>
+        </p>
+      </div>
     </div>
   );
 }

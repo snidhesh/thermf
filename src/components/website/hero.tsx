@@ -1,65 +1,100 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, Users, BookOpen } from "lucide-react";
+
+const chips = [
+  "Invitation only",
+  "Evidence-based",
+  "UAE headquarters",
+  "Global network",
+];
 
 export function Hero() {
   return (
-    <section className="relative bg-rmf-navy text-white overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-rmf-navy via-rmf-navy-light to-rmf-navy opacity-90" />
-      <div className="relative container mx-auto px-4 py-24 md:py-32">
-        <div className="max-w-3xl">
-          <p className="text-rmf-gold font-medium mb-4 tracking-wider uppercase text-sm">
-            Regenerative Medicine Federation
-          </p>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Advancing the Future of{" "}
-            <span className="text-rmf-gold">Regenerative Medicine</span>
-          </h1>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl">
-            Join a global community of physicians and researchers dedicated to
-            advancing regenerative medicine through collaboration, education, and
-            clinical excellence.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Button
-              size="lg"
-              render={<Link href="/register" />}
-              className="bg-rmf-gold hover:bg-rmf-gold-light text-rmf-navy font-semibold"
-            >
-              Apply for Membership <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              render={<Link href="/#about" />}
-              className="border-white/30 text-white hover:bg-white/10"
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
+    <div className="min-h-screen bg-[var(--wt-bg)] flex flex-col items-center justify-center text-center px-5 md:px-[52px] pt-[100px] pb-20 relative overflow-hidden">
+      {/* Radial glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_38%,rgba(184,137,42,0.05)_0%,transparent_70%)] pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          {[
-            { icon: Users, label: "Global Network", value: "500+ Members" },
-            { icon: BookOpen, label: "Educational Resources", value: "200+ Hours" },
-            { icon: Award, label: "Expert Board", value: "30+ Specialists" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="flex items-center gap-4 bg-white/5 rounded-lg p-4 backdrop-blur-sm border border-white/10"
-            >
-              <div className="h-12 w-12 rounded-lg bg-rmf-gold/20 flex items-center justify-center">
-                <stat.icon className="h-6 w-6 text-rmf-gold" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-400">{stat.label}</p>
-                <p className="text-lg font-semibold">{stat.value}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Decorative vertical line */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[rgba(184,137,42,0.06)] to-transparent pointer-events-none" />
+
+      {/* Logo */}
+      <div className="mb-9 animate-[fadeIn_0.9s_ease_0.2s_both]">
+        <Image
+          src="/logo.png"
+          alt="Regenerative Medicine Federation"
+          width={150}
+          height={150}
+          className="w-[150px] h-[150px] object-contain mx-auto drop-shadow-[0_0_28px_rgba(184,137,42,0.3)]"
+          priority
+        />
       </div>
-    </section>
+
+      {/* Eyebrow */}
+      <div className="text-[9px] tracking-[5px] text-[var(--wt-gold)] uppercase mb-5 animate-[riseUp_0.8s_ease_0.65s_both] font-light">
+        Headquartered in the UAE &nbsp;&middot;&nbsp; Global Medical
+        Federation &nbsp;&middot;&nbsp; Est. 2025
+      </div>
+
+      {/* H1 */}
+      <h1 className="font-heading text-[50px] md:text-[78px] font-light text-white leading-[0.94] mb-2 animate-[riseUp_0.8s_ease_0.8s_both]">
+        Regenerative
+        <br />
+        Medicine
+        <br />
+        <em className="text-[var(--wt-gold)] italic">Federation</em>
+      </h1>
+
+      {/* Subtitle */}
+      <div className="font-heading text-[22px] font-light text-[rgba(255,255,255,0.28)] italic mb-7 animate-[riseUp_0.8s_ease_0.9s_both]">
+        Where Science Becomes Practice.
+      </div>
+
+      {/* Separator */}
+      <div className="flex items-center gap-3.5 justify-center mb-7 animate-[fadeIn_0.8s_ease_1s_both]">
+        <div className="w-12 h-px bg-[rgba(184,137,42,0.3)]" />
+        <div className="w-[3px] h-[3px] rounded-full bg-[var(--wt-gold)]" />
+        <div className="w-12 h-px bg-[rgba(184,137,42,0.3)]" />
+      </div>
+
+      {/* Explainer block */}
+      <div className="max-w-[680px] mx-auto mb-5 animate-[riseUp_0.8s_ease_1s_both]">
+        <p className="font-heading text-[19px] italic text-[rgba(255,255,255,0.6)] leading-[1.6] mb-4">
+          Science that Regenerates. Medicine that Transforms.
+        </p>
+        <p className="text-[14px] text-[rgba(255,255,255,0.32)] leading-[1.9] font-light">
+          The RMF is an invitation-only scientific society and elite medical hub
+          for established physicians at the frontier of evidence-based
+          regenerative medicine. We connect, advance, and recognise physicians
+          who have committed to the highest level of practice in peptides, stem
+          cells, exosomes, longevity biology, and cellular protocols.
+          <br />
+          <br />
+          Membership is earned through a rigorous process. It is not a
+          transaction.
+        </p>
+      </div>
+
+      {/* Chips */}
+      <div className="flex gap-2.5 justify-center flex-wrap mx-auto my-[22px] mb-11 animate-[riseUp_0.8s_ease_1.05s_both]">
+        {chips.map((chip) => (
+          <div
+            key={chip}
+            className="border border-[rgba(184,137,42,0.25)] rounded-[2px] px-4 py-[5px] text-[10px] tracking-[2px] text-[rgba(184,137,42,0.75)] uppercase font-light"
+          >
+            {chip}
+          </div>
+        ))}
+      </div>
+
+      {/* CTA button */}
+      <div className="flex gap-3.5 justify-center animate-[riseUp_0.8s_ease_1.15s_both]">
+        <Link
+          href="#register"
+          className="bg-[var(--wt-gold)] text-[var(--wt-bg)] px-[38px] py-3.5 rounded-[2px] text-[10px] tracking-[2.5px] uppercase font-medium hover:bg-[var(--wt-gold-light)] transition-all inline-block"
+        >
+          Register Interest
+        </Link>
+      </div>
+    </div>
   );
 }

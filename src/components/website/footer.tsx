@@ -1,52 +1,91 @@
+import Image from "next/image";
 import Link from "next/link";
+
+const columns = [
+  {
+    title: "Federation",
+    links: [
+      { label: "About the RMF", href: "/#about" },
+      { label: "Membership", href: "/#membership" },
+      { label: "Scientific Board", href: "/#board" },
+      { label: "12 Scientific Chairs", href: "/#chairs" },
+    ],
+  },
+  {
+    title: "Programmes",
+    links: [
+      { label: "News & Media", href: "/#news" },
+      { label: "Online Technical Hub", href: "#" },
+      { label: "CME Programmes", href: "#" },
+    ],
+  },
+  {
+    title: "Connect",
+    links: [
+      { label: "Join the Federation", href: "/#register" },
+      { label: "Instagram", href: "#" },
+      { label: "LinkedIn", href: "#" },
+      { label: "WhatsApp", href: "#" },
+    ],
+  },
+];
 
 export function Footer() {
   return (
-    <footer className="bg-rmf-navy text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-10 w-10 rounded-full bg-rmf-gold flex items-center justify-center">
-                <span className="text-rmf-navy font-heading font-bold text-lg">R</span>
-              </div>
-              <span className="font-heading text-xl font-bold">RMF</span>
-            </div>
-            <p className="text-sm text-gray-400">
-              Advancing regenerative medicine through collaboration, education, and innovation.
-            </p>
+    <footer className="bg-[var(--wt-bg)] border-t border-[var(--wt-border)] py-[52px] pb-8 px-5 md:px-[52px]">
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 max-w-[1200px] mx-auto mb-10">
+        {/* Brand column */}
+        <div>
+          <div className="flex items-center gap-2.5 mb-3">
+            <Image
+              src="/logo.png"
+              alt="RMF"
+              width={36}
+              height={36}
+              className="h-9 w-auto max-w-[36px] object-contain"
+            />
+            <span className="font-heading text-[13px] text-[rgba(255,255,255,0.42)] tracking-[2px]">
+              Regenerative Medicine Federation
+            </span>
           </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-rmf-gold">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/#about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/#membership" className="hover:text-white transition-colors">Membership</Link></li>
-              <li><Link href="/#board" className="hover:text-white transition-colors">Board Members</Link></li>
-              <li><Link href="/#news" className="hover:text-white transition-colors">News</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-rmf-gold">Members</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/login" className="hover:text-white transition-colors">Sign In</Link></li>
-              <li><Link href="/register" className="hover:text-white transition-colors">Apply for Membership</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-rmf-gold">Contact</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li>Dubai, United Arab Emirates</li>
-              <li>info@thermf.org</li>
-            </ul>
-          </div>
+          <p className="text-[12px] text-[rgba(255,255,255,0.18)] leading-[1.75] max-w-[200px]">
+            An invitation-only scientific society and elite medical hub for
+            established physicians. Headquartered in the UAE.
+          </p>
         </div>
 
-        <div className="border-t border-white/10 mt-8 pt-8 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Regenerative Medicine Federation. All rights reserved.</p>
-        </div>
+        {/* Link columns */}
+        {columns.map((col) => (
+          <div key={col.title}>
+            <h5 className="text-[9px] tracking-[2.5px] text-[rgba(184,137,42,0.55)] uppercase mb-[13px] font-normal">
+              {col.title}
+            </h5>
+            <ul className="space-y-2">
+              {col.links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-[12px] text-[rgba(255,255,255,0.26)] hover:text-[var(--wt-gold-light)] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-[rgba(255,255,255,0.04)] pt-4 flex flex-col sm:flex-row justify-between max-w-[1200px] mx-auto">
+        <p className="text-[11px] text-[rgba(255,255,255,0.14)]">
+          &copy; {new Date().getFullYear()} Regenerative Medicine
+          Federation &middot; Headquartered in the UAE &middot; All rights
+          reserved
+        </p>
+        <p className="text-[11px] text-[rgba(184,137,42,0.35)]">
+          Membership is earned, not a transaction
+        </p>
       </div>
     </footer>
   );

@@ -1,83 +1,133 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { ScrollReveal } from "./scroll-reveal";
 
 const boardMembers = [
   {
-    name: "Dr. Sarah Al-Rashid",
-    title: "Founding Chair",
-    specialty: "Regenerative Medicine",
-    location: "Dubai, UAE",
+    initials: "MC",
+    name: "Dr. Marina Cordeiro",
+    role: "Scientific Director",
+    bio: "DHA licensed physician specialising in functional and regenerative medicine. Member and Speaker, International Society for Stem Cell Application. Postgraduate in Nutrology. Medical Degree, Federal Fluminense University.",
+    tags: ["Peptides", "Stem Cells", "Longevity"],
+    tba: false,
   },
   {
-    name: "Prof. Michael Chen",
-    title: "Vice Chair",
-    specialty: "Stem Cell Therapy",
-    location: "London, UK",
+    initials: "RA",
+    name: "Rafael Azambuja",
+    role: "Board Member",
+    bio: "Strategic co-founder of the RMF. Engineer and business leader with deep expertise in diagnostics, genetics, longevity, and precision medicine across the UAE and Brazil.",
+    tags: ["Strategy", "Precision Medicine"],
+    tba: false,
   },
   {
-    name: "Dr. Fatima Hassan",
-    title: "Board Member",
-    specialty: "Anti-Aging Medicine",
-    location: "Abu Dhabi, UAE",
+    initials: "+1",
+    name: "Board Member",
+    role: "To Be Announced",
+    bio: "A senior international physician. Appointment subject to scientific board approval. To be announced in due course.",
+    tags: [],
+    tba: true,
   },
   {
-    name: "Dr. James Wilson",
-    title: "Board Member",
-    specialty: "Orthopedic Regenerative Medicine",
-    location: "New York, USA",
+    initials: "+1",
+    name: "Board Member",
+    role: "To Be Announced",
+    bio: "A senior international physician. Appointment subject to scientific board approval. To be announced in due course.",
+    tags: [],
+    tba: true,
   },
   {
-    name: "Dr. Aisha Patel",
-    title: "Board Member",
-    specialty: "Functional Medicine",
-    location: "Mumbai, India",
-  },
-  {
-    name: "Dr. Klaus Schmidt",
-    title: "Board Member",
-    specialty: "Gene Therapy",
-    location: "Berlin, Germany",
+    initials: "+1",
+    name: "Board Member",
+    role: "To Be Announced",
+    bio: "A senior international physician. Appointment subject to scientific board approval. To be announced in due course.",
+    tags: [],
+    tba: true,
   },
 ];
 
 export function BoardSection() {
   return (
-    <section id="board" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <p className="text-rmf-gold font-medium mb-2 tracking-wider uppercase text-sm">
-            Leadership
-          </p>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-rmf-navy mb-4">
-            Our Board Members
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Led by world-renowned specialists committed to advancing regenerative
-            medicine globally.
-          </p>
-        </div>
+    <section
+      id="board"
+      className="py-[60px] md:py-[92px] px-5 md:px-[52px] bg-[var(--wt-bg2)] border-t border-[var(--wt-border)]"
+    >
+      <div className="max-w-[1200px] mx-auto">
+        <div className="wt-eyebrow">Scientific Board</div>
+        <h2 className="wt-heading">
+          Governed by
+          <br />
+          <em>practitioners.</em>
+        </h2>
+        <p className="wt-lead">
+          The RMF is governed by its founding board and a growing panel of
+          internationally recognised clinical leaders. Three further board
+          appointments will be announced as the federation expands its scientific
+          leadership globally.
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {boardMembers.map((member) => (
-            <Card key={member.name} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-full bg-rmf-navy flex items-center justify-center shrink-0">
-                    <span className="text-rmf-gold font-heading font-bold text-lg">
-                      {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                    </span>
+        <ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-11">
+            {boardMembers.map((m, i) => (
+              <div
+                key={`${m.name}-${i}`}
+                className={`border border-[var(--wt-border)] rounded overflow-hidden transition-colors hover:border-[rgba(184,137,42,0.35)] ${
+                  m.tba ? "" : ""
+                }`}
+              >
+                {/* Top zone */}
+                <div className="bg-[var(--wt-bg3)] py-[26px] px-[18px] text-center border-b border-[var(--wt-border)]">
+                  <div
+                    className={`w-[60px] h-[60px] rounded-full mx-auto mb-[11px] flex items-center justify-center font-heading text-[18px] font-light bg-[var(--wt-bg4)] ${
+                      m.tba
+                        ? "border-[1.5px] border-dashed border-[rgba(184,137,42,0.2)] text-[rgba(184,137,42,0.2)]"
+                        : "border-[1.5px] border-[rgba(184,137,42,0.26)] text-[var(--wt-gold)]"
+                    }`}
+                  >
+                    {m.initials}
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-rmf-navy">{member.name}</h3>
-                    <p className="text-sm text-rmf-gold">{member.title}</p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {member.specialty} &middot; {member.location}
-                    </p>
+                  <div
+                    className={`font-heading text-[16px] font-normal mb-[3px] ${
+                      m.tba ? "text-[rgba(255,255,255,0.18)]" : "text-white"
+                    }`}
+                  >
+                    {m.name}
+                  </div>
+                  <div
+                    className={`text-[8px] tracking-[1.5px] uppercase ${
+                      m.tba
+                        ? "text-[rgba(184,137,42,0.2)]"
+                        : "text-[var(--wt-gold)]"
+                    }`}
+                  >
+                    {m.role}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                {/* Bottom zone */}
+                <div className="bg-[var(--wt-bg2)] p-3.5 px-4">
+                  <p
+                    className={`text-[11px] leading-[1.6] ${
+                      m.tba
+                        ? "text-[rgba(255,255,255,0.15)]"
+                        : "text-[var(--wt-slate)]"
+                    }`}
+                  >
+                    {m.bio}
+                  </p>
+                  {m.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      {m.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-[2px] px-[7px] py-[2px] text-[9px] text-[rgba(255,255,255,0.26)]"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

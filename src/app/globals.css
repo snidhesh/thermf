@@ -138,3 +138,158 @@
     @apply font-sans;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/*  Website dark luxury theme — scoped to .website-theme wrapper      */
+/* ------------------------------------------------------------------ */
+
+.website-theme {
+  --wt-bg: #04101E;
+  --wt-bg2: #071522;
+  --wt-bg3: #0B1D2E;
+  --wt-bg4: #102438;
+  --wt-gold: #B8892A;
+  --wt-gold-light: #D4A84B;
+  --wt-white: #FFFFFF;
+  --wt-slate: #5C7A96;
+  --wt-border: #1A3450;
+  --wt-mint: #3DBFB8;
+
+  /* Override shadcn CSS variables for dark palette */
+  --background: #04101E;
+  --foreground: #FFFFFF;
+  --card: #071522;
+  --card-foreground: #FFFFFF;
+  --popover: #071522;
+  --popover-foreground: #FFFFFF;
+  --primary: #B8892A;
+  --primary-foreground: #04101E;
+  --secondary: #0B1D2E;
+  --secondary-foreground: #FFFFFF;
+  --muted: #0B1D2E;
+  --muted-foreground: #5C7A96;
+  --accent: #B8892A;
+  --accent-foreground: #04101E;
+  --destructive: #ef4444;
+  --border: #1A3450;
+  --input: #1A3450;
+  --ring: #B8892A;
+}
+
+/* Utility classes scoped to website theme */
+.website-theme .wt-eyebrow {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--wt-gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.website-theme .wt-heading {
+  font-family: var(--font-heading);
+  font-size: 54px;
+  font-weight: 300;
+  line-height: 1.06;
+  margin-bottom: 20px;
+  color: var(--wt-white);
+}
+
+.website-theme .wt-heading em {
+  color: var(--wt-gold);
+  font-style: italic;
+}
+
+.website-theme .wt-rule {
+  width: 36px;
+  height: 1px;
+  background: var(--wt-gold);
+  margin: 20px 0;
+}
+
+.website-theme .wt-lead {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.9;
+  max-width: 580px;
+  font-weight: 300;
+}
+
+/* Form field styles */
+.website-theme .wt-field label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--wt-slate);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.website-theme .wt-field input,
+.website-theme .wt-field select {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--wt-border);
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--wt-white);
+  font-family: var(--font-sans);
+  transition: border-color 0.2s;
+}
+
+.website-theme .wt-field input:focus,
+.website-theme .wt-field select:focus {
+  outline: none;
+  border-color: var(--wt-gold);
+}
+
+.website-theme .wt-field input::placeholder {
+  color: rgba(255, 255, 255, 0.16);
+}
+
+.website-theme .wt-field select option {
+  background: var(--wt-bg2);
+}
+
+/* Scroll-margin for anchor targets under fixed navbar */
+.website-theme section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scroll-reveal & hero keyframes (global — inert without usage)     */
+/* ------------------------------------------------------------------ */
+
+.rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.rv.on {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

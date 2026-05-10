@@ -1,13 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { SPECIALTIES, COUNTRIES } from "@/lib/constants";
 import { CheckCircle } from "lucide-react";
+import { SPECIALTIES, COUNTRIES } from "@/lib/constants";
 
 export default function RegisterPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -49,8 +44,8 @@ export default function RegisterPage() {
       const result = await res.json();
       setRefNumber(result.referenceNumber);
       setSubmitted(true);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -58,142 +53,157 @@ export default function RegisterPage() {
 
   if (submitted) {
     return (
-      <div className="container mx-auto px-4 py-20">
-        <Card className="max-w-lg mx-auto">
-          <CardContent className="p-8 text-center">
-            <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-            <h2 className="font-heading text-2xl font-bold text-rmf-navy mb-2">
-              Application Submitted
-            </h2>
-            <p className="text-muted-foreground mb-4">
-              Thank you for applying to the Regenerative Medicine Federation.
-            </p>
-            <p className="text-sm mb-2">Your reference number:</p>
-            <p className="font-mono text-lg font-bold text-rmf-gold mb-4">{refNumber}</p>
-            <p className="text-xs text-muted-foreground">
-              Save this reference number to track your application status.
-            </p>
-          </CardContent>
-        </Card>
+      <div className="min-h-screen flex items-center justify-center px-4 pt-[72px]">
+        <div className="bg-[var(--wt-bg3)] border border-[var(--wt-border)] rounded max-w-lg w-full p-8 text-center">
+          <CheckCircle className="h-16 w-16 text-[var(--wt-gold)] mx-auto mb-4" />
+          <h2 className="font-heading text-2xl font-light text-white mb-2">
+            Application Submitted
+          </h2>
+          <p className="text-[var(--wt-slate)] mb-4">
+            Thank you for applying to the Regenerative Medicine Federation.
+          </p>
+          <p className="text-sm text-[rgba(255,255,255,0.4)] mb-2">
+            Your reference number:
+          </p>
+          <p className="font-mono text-lg text-[var(--wt-gold)] mb-4">
+            {refNumber}
+          </p>
+          <p className="text-xs text-[var(--wt-slate)]">
+            Save this reference number to track your application status.
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen px-4 py-12 pt-[100px]">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="font-heading text-3xl font-bold text-rmf-navy mb-2">
+          <h1 className="font-heading text-3xl font-light text-white mb-2">
             Apply for Membership
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-[var(--wt-slate)]">
             Complete the form below to apply for RMF membership. Our team will
             review your application.
           </p>
         </div>
 
-        <Card>
-          <CardContent className="p-6">
+        <div className="bg-[var(--wt-bg3)] border border-[var(--wt-border)] rounded overflow-hidden">
+          <div className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="firstName">First Name *</Label>
-                  <Input id="firstName" name="firstName" required />
+                <div className="wt-field">
+                  <label htmlFor="firstName">First Name *</label>
+                  <input id="firstName" name="firstName" required />
                 </div>
-                <div>
-                  <Label htmlFor="lastName">Last Name *</Label>
-                  <Input id="lastName" name="lastName" required />
+                <div className="wt-field">
+                  <label htmlFor="lastName">Last Name *</label>
+                  <input id="lastName" name="lastName" required />
                 </div>
               </div>
 
-              <div>
-                <Label htmlFor="email">Email *</Label>
-                <Input id="email" name="email" type="email" required />
+              <div className="wt-field">
+                <label htmlFor="email">Email *</label>
+                <input id="email" name="email" type="email" required />
               </div>
 
-              <div>
-                <Label htmlFor="phone">Phone *</Label>
-                <Input id="phone" name="phone" type="tel" required />
+              <div className="wt-field">
+                <label htmlFor="phone">Phone *</label>
+                <input id="phone" name="phone" type="tel" required />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="specialty">Specialty *</Label>
-                  <select
-                    id="specialty"
-                    name="specialty"
-                    required
-                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                  >
-                    <option value="">Select specialty</option>
+                <div className="wt-field">
+                  <label htmlFor="specialty">Specialty *</label>
+                  <select id="specialty" name="specialty" required defaultValue="">
+                    <option value="" disabled>
+                      Select specialty
+                    </option>
                     {SPECIALTIES.map((s) => (
-                      <option key={s} value={s}>{s}</option>
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
                     ))}
                   </select>
                 </div>
-                <div>
-                  <Label htmlFor="country">Country *</Label>
-                  <select
-                    id="country"
-                    name="country"
-                    required
-                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                  >
-                    <option value="">Select country</option>
+                <div className="wt-field">
+                  <label htmlFor="country">Country *</label>
+                  <select id="country" name="country" required defaultValue="">
+                    <option value="" disabled>
+                      Select country
+                    </option>
                     {COUNTRIES.map((c) => (
-                      <option key={c} value={c}>{c}</option>
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
                     ))}
                   </select>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="city">City *</Label>
-                  <Input id="city" name="city" required />
+                <div className="wt-field">
+                  <label htmlFor="city">City *</label>
+                  <input id="city" name="city" required />
                 </div>
-                <div>
-                  <Label htmlFor="yearsExperience">Years of Experience *</Label>
-                  <Input id="yearsExperience" name="yearsExperience" type="number" min={0} max={60} required />
+                <div className="wt-field">
+                  <label htmlFor="yearsExperience">
+                    Years of Experience *
+                  </label>
+                  <input
+                    id="yearsExperience"
+                    name="yearsExperience"
+                    type="number"
+                    min={0}
+                    max={60}
+                    required
+                  />
                 </div>
               </div>
 
-              <div>
-                <Label htmlFor="qualifications">Qualifications *</Label>
-                <Textarea
+              <div className="wt-field">
+                <label htmlFor="qualifications">Qualifications *</label>
+                <textarea
                   id="qualifications"
                   name="qualifications"
                   placeholder="List your medical qualifications, certifications, and training..."
                   rows={3}
                   required
+                  className="w-full p-[10px] px-3 bg-[rgba(255,255,255,0.04)] border border-[var(--wt-border)] rounded-[2px] text-[13px] text-white font-[var(--font-sans)] transition-colors focus:outline-none focus:border-[var(--wt-gold)] placeholder:text-[rgba(255,255,255,0.16)] resize-vertical"
                 />
               </div>
 
-              <div>
-                <Label htmlFor="motivation">Why do you want to join RMF? *</Label>
-                <Textarea
+              <div className="wt-field">
+                <label htmlFor="motivation">
+                  Why do you want to join RMF? *
+                </label>
+                <textarea
                   id="motivation"
                   name="motivation"
                   placeholder="Explain your interest in regenerative medicine and what you hope to gain from membership..."
                   rows={4}
                   required
+                  className="w-full p-[10px] px-3 bg-[rgba(255,255,255,0.04)] border border-[var(--wt-border)] rounded-[2px] text-[13px] text-white font-[var(--font-sans)] transition-colors focus:outline-none focus:border-[var(--wt-gold)] placeholder:text-[rgba(255,255,255,0.16)] resize-vertical"
                 />
               </div>
 
               {error && (
-                <p className="text-sm text-red-600 bg-red-50 p-3 rounded">{error}</p>
+                <p className="text-[12px] text-red-400 bg-[rgba(239,68,68,0.1)] p-3 rounded">
+                  {error}
+                </p>
               )}
 
-              <Button
+              <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-rmf-gold hover:bg-rmf-gold-light text-rmf-navy font-semibold"
+                className="w-full bg-[var(--wt-gold)] text-[var(--wt-bg)] py-3 rounded-[2px] text-[10px] tracking-[2.5px] uppercase font-medium hover:bg-[var(--wt-gold-light)] transition-colors disabled:opacity-50"
               >
                 {loading ? "Submitting..." : "Submit Application"}
-              </Button>
+              </button>
             </form>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

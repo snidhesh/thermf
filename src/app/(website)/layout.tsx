@@ -7,10 +7,10 @@ export default function WebsiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="website-theme min-h-screen bg-[var(--wt-bg)] text-white">
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }

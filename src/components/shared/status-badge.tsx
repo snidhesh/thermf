@@ -15,6 +15,9 @@ const STATUS_STYLES: Record<string, string> = {
   no_show: "bg-orange-100 text-orange-800",
   active: "bg-green-100 text-green-800",
   inactive: "bg-gray-100 text-gray-600",
+  contacted: "bg-purple-100 text-purple-800",
+  converted: "bg-emerald-100 text-emerald-800",
+  closed: "bg-gray-100 text-gray-600",
 };
 
 interface StatusBadgeProps {

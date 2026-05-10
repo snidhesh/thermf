@@ -5,6 +5,7 @@ import { applications } from "./applications";
 import { contentItems, contentAssets } from "./content";
 import { sessionSlots, bookings } from "./sessions";
 import { activityLog } from "./activity-log";
+import { leads } from "./leads";
 
 /* ------------------------------------------------------------------ */
 /*  Users relations                                                    */
@@ -117,5 +118,16 @@ export const activityLogRelations = relations(activityLog, ({ one }) => ({
   user: one(users, {
     fields: [activityLog.userId],
     references: [users.id],
+  }),
+}));
+
+/* ------------------------------------------------------------------ */
+/*  Leads relations                                                    */
+/* ------------------------------------------------------------------ */
+
+export const leadsRelations = relations(leads, ({ one }) => ({
+  convertedApplication: one(applications, {
+    fields: [leads.convertedApplicationId],
+    references: [applications.id],
   }),
 }));
