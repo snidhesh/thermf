@@ -1,2 +1,4 @@
-// Re-export from src/db/seed.ts
+import { config } from "dotenv";
+config({ path: ".env.local" });
+
 import "../src/db/seed";
